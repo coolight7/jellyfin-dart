@@ -1104,6 +1104,77 @@ class ImageApi {
     );
   }
 
+  RequestOptions createGetItemImageByIndex({
+    required String itemId,
+    required ImageType imageType,
+    required int imageIndex,
+    int? maxWidth,
+    int? maxHeight,
+    int? width,
+    int? height,
+    int? quality,
+    int? fillWidth,
+    int? fillHeight,
+    String? tag,
+    ImageFormat? format,
+    double? percentPlayed,
+    int? unplayedCount,
+    int? blur,
+    String? backgroundColor,
+    String? foregroundLayer,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) {
+    return Options(
+      method: r'GET',
+      responseType: ResponseType.bytes,
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      validateStatus: validateStatus,
+    ).compose(
+      _dio.options,
+      r'/Items/{itemId}/Images/{imageType}/{imageIndex}'
+          .replaceAll(
+            '{'
+            r'itemId'
+            '}',
+            itemId.toString(),
+          )
+          .replaceAll(
+            '{'
+            r'imageType'
+            '}',
+            imageType.toString(),
+          )
+          .replaceAll(
+            '{'
+            r'imageIndex'
+            '}',
+            imageIndex.toString(),
+          ),
+      queryParameters: <String, dynamic>{
+        if (maxWidth != null) r'maxWidth': maxWidth,
+        if (maxHeight != null) r'maxHeight': maxHeight,
+        if (width != null) r'width': width,
+        if (height != null) r'height': height,
+        if (quality != null) r'quality': quality,
+        if (fillWidth != null) r'fillWidth': fillWidth,
+        if (fillHeight != null) r'fillHeight': fillHeight,
+        if (tag != null) r'tag': tag,
+        if (format != null) r'format': format,
+        if (percentPlayed != null) r'percentPlayed': percentPlayed,
+        if (unplayedCount != null) r'unplayedCount': unplayedCount,
+        if (blur != null) r'blur': blur,
+        if (backgroundColor != null) r'backgroundColor': backgroundColor,
+        if (foregroundLayer != null) r'foregroundLayer': foregroundLayer,
+      },
+    );
+  }
+
   /// Get item image infos.
   ///
   ///

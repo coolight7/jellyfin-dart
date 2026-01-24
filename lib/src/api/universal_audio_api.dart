@@ -162,6 +162,87 @@ class UniversalAudioApi {
     );
   }
 
+  RequestOptions createGetUniversalAudioStream({
+    required String itemId,
+    Iterable<String>? container,
+    String? mediaSourceId,
+    String? deviceId,
+    String? userId,
+    String? audioCodec,
+    int? maxAudioChannels,
+    int? transcodingAudioChannels,
+    int? maxStreamingBitrate,
+    int? audioBitRate,
+    int? startTimeTicks,
+    String? transcodingContainer,
+    MediaStreamProtocol? transcodingProtocol,
+    int? maxAudioSampleRate,
+    int? maxAudioBitDepth,
+    bool? enableRemoteMedia,
+    bool? enableAudioVbrEncoding = true,
+    bool? breakOnNonKeyFrames = false,
+    bool? enableRedirection = true,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) {
+    return Options(
+      method: r'GET',
+      responseType: ResponseType.bytes,
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'CustomAuthentication',
+            'keyName': 'Authorization',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    ).compose(
+      _dio.options,
+      r'/Audio/{itemId}/universal'.replaceAll(
+        '{'
+        r'itemId'
+        '}',
+        itemId.toString(),
+      ),
+      queryParameters: <String, dynamic>{
+        if (container != null) r'container': container,
+        if (mediaSourceId != null) r'mediaSourceId': mediaSourceId,
+        if (deviceId != null) r'deviceId': deviceId,
+        if (userId != null) r'userId': userId,
+        if (audioCodec != null) r'audioCodec': audioCodec,
+        if (maxAudioChannels != null) r'maxAudioChannels': maxAudioChannels,
+        if (transcodingAudioChannels != null)
+          r'transcodingAudioChannels': transcodingAudioChannels,
+        if (maxStreamingBitrate != null)
+          r'maxStreamingBitrate': maxStreamingBitrate,
+        if (audioBitRate != null) r'audioBitRate': audioBitRate,
+        if (startTimeTicks != null) r'startTimeTicks': startTimeTicks,
+        if (transcodingContainer != null)
+          r'transcodingContainer': transcodingContainer,
+        if (transcodingProtocol != null)
+          r'transcodingProtocol': transcodingProtocol,
+        if (maxAudioSampleRate != null)
+          r'maxAudioSampleRate': maxAudioSampleRate,
+        if (maxAudioBitDepth != null) r'maxAudioBitDepth': maxAudioBitDepth,
+        if (enableRemoteMedia != null) r'enableRemoteMedia': enableRemoteMedia,
+        if (enableAudioVbrEncoding != null)
+          r'enableAudioVbrEncoding': enableAudioVbrEncoding,
+        if (breakOnNonKeyFrames != null)
+          r'breakOnNonKeyFrames': breakOnNonKeyFrames,
+        if (enableRedirection != null) r'enableRedirection': enableRedirection,
+      },
+    );
+  }
+
   /// Gets an audio stream.
   ///
   ///
